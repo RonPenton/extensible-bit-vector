@@ -9,6 +9,9 @@ function grow(vector, newChunkSize) {
     while (size < newChunkSize) {
         size *= growthFactor;
     }
+    // don't bother to resize, vector is already long enough.
+    if (size <= vector.length)
+        return vector;
     var n = new vectorType(size);
     for (var i = 0; i < vector.length; i++) {
         n[i] = vector[i];
