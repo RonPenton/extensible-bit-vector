@@ -1,6 +1,6 @@
 {
   "name": "extensible-bit-vector",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An extensible bit-vector class for Javascript",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "bitvector",
     "extensible"
   ],
-  "author": "Ron Penton",
+  "author": "Ron Penton <ron.penton@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/RonPenton/extensible-bit-vector/issues"
