@@ -68,7 +68,7 @@ export class BitVector {
     public get(bit: number) {
         const { r, pos } = calculate(bit);
         if (this.bits.length >= pos)
-            return 0;
+            return false;
         return !!(this.bits[pos] & (1 << r))
     }
 
