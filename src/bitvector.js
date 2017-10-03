@@ -14,6 +14,11 @@ function grow(vector) {
 function deserialize(base64String) {
     return buffer_1.Buffer.from(base64String, 'base64');
 }
+function calculate(bit) {
+    var r = bit % vectorSize;
+    var pos = (bit - r) / vectorSize;
+    return { r: r, pos: pos };
+}
 var BitVector = /** @class */ (function () {
     function BitVector(sizeOrString) {
         if (typeof sizeOrString === 'string') {
@@ -32,20 +37,17 @@ var BitVector = /** @class */ (function () {
         this.bits = vector;
     };
     BitVector.prototype.set = function (bit) {
-        var r = bit % vectorSize;
-        var pos = (bit - r) / vectorSize;
+        var _a = calculate(bit), r = _a.r, pos = _a.pos;
         this.ensureSize(pos);
         this.bits[pos] |= (1 << r);
     };
     BitVector.prototype.clear = function (bit) {
-        var r = bit % vectorSize;
-        var pos = (bit - r) / vectorSize;
+        var _a = calculate(bit), r = _a.r, pos = _a.pos;
         this.ensureSize(pos);
         this.bits[pos] &= ~(1 << r);
     };
     BitVector.prototype.get = function (bit) {
-        var r = bit % vectorSize;
-        var pos = (bit - r) / vectorSize;
+        var _a = calculate(bit), r = _a.r, pos = _a.pos;
         if (this.bits.length >= pos)
             return 0;
         return !!(this.bits[pos] & (1 << r));

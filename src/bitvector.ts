@@ -17,6 +17,12 @@ function deserialize(base64String: string): VectorType {
     return Buffer.from(base64String, 'base64');
 }
 
+function calculate(bit: number) {
+    const r = bit % vectorSize;
+    const pos = (bit - r) / vectorSize;
+    return { r, pos };
+}
+
 export class BitVector {
 
     private bits: VectorType;
@@ -34,7 +40,6 @@ export class BitVector {
     }
 
     private ensureSize(newChunkSize: number) {
-
         let vector = this.bits;
         while (vector.length < newChunkSize) {
             vector = grow(vector);
@@ -43,22 +48,19 @@ export class BitVector {
     }
 
     public set(bit: number) {
-        const r = bit % vectorSize;
-        const pos = (bit - r) / vectorSize;
+        const { r, pos } = calculate(bit);
         this.ensureSize(pos);
         this.bits[pos] |= (1 << r)
     }
 
     public clear(bit: number) {
-        const r = bit % vectorSize
-        const pos = (bit - r) / vectorSize
+        const { r, pos } = calculate(bit);
         this.ensureSize(pos);
         this.bits[pos] &= ~(1 << r)
     }
 
     public get(bit: number) {
-        const r = bit % vectorSize
-        const pos = (bit - r) / vectorSize
+        const { r, pos } = calculate(bit);
         if (this.bits.length >= pos)
             return 0;
         return !!(this.bits[pos] & (1 << r))
