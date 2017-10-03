@@ -1,0 +1,34 @@
+{
+  "name": "extensible-bit-vector",
+  "version": "1.0.0",
+  "description": "An extensible bit-vector class for Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "tsc && mocha",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RonPenton/extensible-bit-vector.git"
+  },
+  "keywords": [
+    "bit",
+    "vector",
+    "bitvector",
+    "extensible"
+  ],
+  "author": "Ron Penton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RonPenton/extensible-bit-vector/issues"
+  },
+  "homepage": "https://github.com/RonPenton/extensible-bit-vector#readme",
+  "devDependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/mocha": "^2.2.43",
+    "@types/node": "^8.0.31",
+    "chai": "^4.1.2",
+    "mocha": "^3.5.3",
+    "typescript": "^2.5.3"
+  }
+}
