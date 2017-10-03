@@ -5,8 +5,13 @@ type VectorType = Uint8Array;
 const vectorType = Uint8Array;
 const vectorSize = 8;
 
-function grow(vector: VectorType): VectorType {
-    var n = new vectorType(Math.ceil(vector.length * growthFactor));
+function grow(vector: VectorType, newChunkSize: number): VectorType {
+    let size = vector.length;
+    while(size < newChunkSize) {
+        size *= growthFactor;
+    }
+
+    var n = new vectorType(size);
     for (let i = 0; i < vector.length; i++) {
         n[i] = vector[i];
     }
@@ -40,9 +45,7 @@ export class BitVector {
 
     private ensureSize(newChunkSize: number) {
         let vector = this.bits;
-        while (vector.length < newChunkSize) {
-            vector = grow(vector);
-        }
+        vector = grow(vector, newChunkSize);
         this.bits = vector;
     }
 

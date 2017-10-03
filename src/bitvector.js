@@ -4,8 +4,12 @@ var buffer_1 = require("buffer");
 var growthFactor = 2;
 var vectorType = Uint8Array;
 var vectorSize = 8;
-function grow(vector) {
-    var n = new vectorType(Math.ceil(vector.length * growthFactor));
+function grow(vector, newChunkSize) {
+    var size = vector.length;
+    while (size < newChunkSize) {
+        size *= growthFactor;
+    }
+    var n = new vectorType(size);
     for (var i = 0; i < vector.length; i++) {
         n[i] = vector[i];
     }
@@ -31,9 +35,7 @@ var BitVector = /** @class */ (function () {
     }
     BitVector.prototype.ensureSize = function (newChunkSize) {
         var vector = this.bits;
-        while (vector.length < newChunkSize) {
-            vector = grow(vector);
-        }
+        vector = grow(vector, newChunkSize);
         this.bits = vector;
     };
     BitVector.prototype.set = function (bit) {
@@ -64,6 +66,11 @@ var BitVector = /** @class */ (function () {
     };
     Object.defineProperty(BitVector.prototype, "chunkLength", {
         get: function () { return this.bits.length; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BitVector.prototype, "length", {
+        get: function () { return this.bits.length * vectorSize; },
         enumerable: true,
         configurable: true
     });
