@@ -49,7 +49,7 @@ describe('integration tests', () => {
         const str = vector.serialize();
         const newVector = new BitVector(str);
 
-        expect(vector.length == newVector.length);
+        expect(vector.chunkLength == newVector.chunkLength);
 
         for(let x = 0; x < size; x++) {
             expect(vector.get(x) == newVector.get(x));
@@ -67,7 +67,7 @@ describe('integration tests', () => {
         const str = vector.serialize();
         const newVector = new BitVector(str);
 
-        expect(vector.length == newVector.length);
+        expect(vector.chunkLength == newVector.chunkLength);
 
         for(let x = 0; x < size; x++) {
             expect(vector.get(x) == newVector.get(x));

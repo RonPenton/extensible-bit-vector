@@ -42,7 +42,7 @@ describe('integration tests', function () {
         indices.forEach(function (x) { return vector.set(x); });
         var str = vector.serialize();
         var newVector = new index_1.default(str);
-        expect(vector.length == newVector.length);
+        expect(vector.chunkLength == newVector.chunkLength);
         for (var x = 0; x < size; x++) {
             expect(vector.get(x) == newVector.get(x));
         }
@@ -56,7 +56,7 @@ describe('integration tests', function () {
         initialIndices.forEach(function (x) { return vector.set(x); });
         var str = vector.serialize();
         var newVector = new index_1.default(str);
-        expect(vector.length == newVector.length);
+        expect(vector.chunkLength == newVector.chunkLength);
         for (var x = 0; x < size; x++) {
             expect(vector.get(x) == newVector.get(x));
         }

@@ -62,7 +62,7 @@ var BitVector = /** @class */ (function () {
         }
         return buffer_1.Buffer.from(result).toString('base64');
     };
-    Object.defineProperty(BitVector.prototype, "length", {
+    Object.defineProperty(BitVector.prototype, "chunkLength", {
         get: function () { return this.bits.length; },
         enumerable: true,
         configurable: true

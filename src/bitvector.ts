@@ -24,7 +24,6 @@ function calculate(bit: number) {
 }
 
 export class BitVector {
-
     private bits: VectorType;
 
     constructor(base64String: string);
@@ -77,5 +76,6 @@ export class BitVector {
         return Buffer.from(result).toString('base64');
     }
 
-    public get length() { return this.bits.length; }
+    public get chunkLength() { return this.bits.length; }
+    public get length() { return this.bits.length * vectorSize; }
 }
